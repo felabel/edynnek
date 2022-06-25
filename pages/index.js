@@ -8,7 +8,7 @@ import Link from "next/link";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 
-const login = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState('')
@@ -81,6 +81,6 @@ const login = () => {
   )
 }
 
-export default login
+export default Login
 
 

@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 
-function dashboard() {
+function Dashboard() {
   const router = useRouter();
 
   function handleLogOut(e) {
@@ -33,4 +33,4 @@ function dashboard() {
     </div>
   );
 }
-export default dashboard;
+export default Dashboard;
