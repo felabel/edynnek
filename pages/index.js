@@ -72,7 +72,7 @@ const Login = () => {
         </p>
         <p className="text-center text-xs mt-1">
           Forgotten password?{" "}
-          <Link href="/password">
+          <Link href="/resetPassword">
             <a className="text-blue-700">Reset Here</a>
           </Link>
         </p>
