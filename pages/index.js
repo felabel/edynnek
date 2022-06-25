@@ -65,7 +65,7 @@ const Login = () => {
           className="bg-teal-800 w-full mt-2 tracking-wide p-1 focus:outline-none rounded-xl font-bold text-teal-50 text-center"
         />
         <p className="text-center text-xs mt-4">
-          Don't have an account{" "}
+          Don&apos;t have an account{" "}?
           <Link href="/signup">
             <a className="text-blue-700">sign Up</a>
           </Link>
