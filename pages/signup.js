@@ -1,41 +1,42 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
-import React, { useState } from 'react'
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
-
-const login = () => {
+const  signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
-  function handleLogin(e) {
+  function handleSignUp(e) {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log("logged In");
+        console.log("Your are registered");
         router.push("/dashboard");
       })
       .catch((error) => {
-        console.log(error);
-        setError('email or password not correct')
+        console.log(error.message);
+        setError(
+          "Make password more than 6 characters and format email properly"
+        );
         // ..
       });
   }
+
   return (
     <div className="w-1/3 mx-auto">
       <h2 className="text-center font-mono font-extrabold mt-32 text-2xl">
-        Edynnek properties<br /> LogIn 
+       Edynnek properties <br /> SignUp 
       </h2>
-
-      <form onSubmit={handleLogin}>
-      {error && <p className="text-center text-xs mt-3 text-red-400">{error}</p>}
+      <form onSubmit={handleSignUp}>
+        {error && (
+          <p className="text-center text-xs mt-3 text-red-400">{error}</p>
+        )}
         <div className="my-2 flex flex-col">
           <label className="text-teal-800 font-bold text-lg tracking-wide">
             Email
@@ -65,22 +66,15 @@ const login = () => {
           className="bg-teal-800 w-full mt-2 tracking-wide p-1 focus:outline-none rounded-xl font-bold text-teal-50 text-center"
         />
         <p className="text-center text-xs mt-4">
-          Don't have an account{" "}
-          <Link href="/signup">
-            <a className="text-blue-700">sign Up</a>
-          </Link>
-        </p>
-        <p className="text-center text-xs mt-1">
-          Forgotten password?{" "}
-          <Link href="/password">
-            <a className="text-blue-700">Reset Here</a>
+          Already have an account{" "}
+          <Link href="/">
+            <a className="text-blue-700">sign In</a>
           </Link>
         </p>
       </form>
     </div>
-  )
+  );
 }
-
-export default login
+export default signup
 
 
